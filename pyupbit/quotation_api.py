@@ -4,6 +4,7 @@
 pyupbit.quotation_api
 
 This module provides quatation api of the Upbit API.
+TODO: enable polars
 """
 
 import datetime
@@ -49,31 +50,29 @@ def get_url_ohlcv(interval):
     Returns:
         str: upbit api url
     """
-
-    if interval in ["day", "days"]:
-        url = "https://api.upbit.com/v1/candles/days"
-    elif interval in ["minute1", "minutes1"]:
-        url = "https://api.upbit.com/v1/candles/minutes/1"
-    elif interval in ["minute3", "minutes3"]:
-        url = "https://api.upbit.com/v1/candles/minutes/3"
-    elif interval in ["minute5", "minutes5"]:
-        url = "https://api.upbit.com/v1/candles/minutes/5"
-    elif interval in ["minute10", "minutes10"]:
-        url = "https://api.upbit.com/v1/candles/minutes/10"
-    elif interval in ["minute15", "minutes15"]:
-        url = "https://api.upbit.com/v1/candles/minutes/15"
-    elif interval in ["minute30", "minutes30"]:
-        url = "https://api.upbit.com/v1/candles/minutes/30"
-    elif interval in ["minute60", "minutes60"]:
-        url = "https://api.upbit.com/v1/candles/minutes/60"
-    elif interval in ["minute240", "minutes240"]:
-        url = "https://api.upbit.com/v1/candles/minutes/240"
-    elif interval in ["week",  "weeks"]:
-        url = "https://api.upbit.com/v1/candles/weeks"
-    elif interval in ["month", "months"]:
-        url = "https://api.upbit.com/v1/candles/months"
-    else:
-        url = "https://api.upbit.com/v1/candles/days"
+    match interval:
+        case "minute1" | "minutes1":
+            url = "https://api.upbit.com/v1/candles/minutes/1"
+        case "minute3" | "minutes3":
+            url = "https://api.upbit.com/v1/candles/minutes/3"
+        case "minute5" | "minutes5":
+            url = "https://api.upbit.com/v1/candles/minutes/5"
+        case "minute10" | "minutes10":
+            url = "https://api.upbit.com/v1/candles/minutes/10"
+        case "minute15" | "minutes15":
+            url = "https://api.upbit.com/v1/candles/minutes/15"
+        case "minute30" | "minutes30":
+            url = "https://api.upbit.com/v1/candles/minutes/30"
+        case "minute60" | "minutes60":
+            url = "https://api.upbit.com/v1/candles/minutes/60"
+        case "minute240" | "minutes240":
+            url = "https://api.upbit.com/v1/candles/minutes/240"
+        case "week" | "weeks":
+            url = "https://api.upbit.com/v1/candles/weeks"
+        case "month" | "months":
+            url = "https://api.upbit.com/v1/candles/months"
+        case _:
+            url = "https://api.upbit.com/v1/candles/days"
 
     return url
 
@@ -141,6 +140,10 @@ def get_ohlcv(ticker="KRW-BTC", interval="day", count=200, to=None,
         return df
     except Exception:
         return None
+
+
+def get_ohlcv_from_with_dataframe_backend():
+    pass
 
 
 def get_ohlcv_from(ticker="KRW-BTC", interval="day", fromDatetime=None,
