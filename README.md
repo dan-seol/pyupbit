@@ -397,3 +397,21 @@ if __name__ == "__main__":
         data = queue.get()
         print(data)
 ```
+
+## Development
+### >= 0.3.0
+#### Environment and Testing (환경 설정 및 테스팅)
+- Once you set up [`python-poetry`](https://python-poetry.org/)
+```bash
+poetry install
+poetry lock
+poetry shell
+pytest
+```
+#### Build and Publication (빌드 및 배포)
+```bash
+poetry build # to build
+
+poetry publish <remote repo> # pypi by default
+```
+

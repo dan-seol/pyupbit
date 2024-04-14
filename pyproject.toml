@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "pyupbit"
+version = "0.3.0"
+description = "Python Wrapper for Upbit API"
+authors = ["Jonghun Yoo <jonghun.yoo@outlook.com>, Brayden Jo <brayden.jo@outlook.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10"
+pyjwt = ">=2.0.0"
+pandas = "^2.2.2"
+requests = "^2.31.0"
+websockets = "^12.0"
+polars = "^0.20.20"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
